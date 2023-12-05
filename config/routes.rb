@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :blogs
+  root 'pages#home'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get 'pages/home'
+  get 'pages/about'
+  get 'pages/contact'
+
+  resources :blogs
 end
