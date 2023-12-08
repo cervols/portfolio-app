@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   get 'pages/contact'
 
   resources :blogs
-  resources :portfolios, only: [:index]
+  resources :portfolios
 end
