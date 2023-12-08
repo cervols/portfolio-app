@@ -15,7 +15,7 @@ RSpec.describe "Portfolios", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       portfolio = Portfolio.create! valid_attributes
-      get portfolio_url(portfolio)
+      get portfolio_show_url(portfolio)
       expect(response).to be_successful
     end
   end
@@ -45,7 +45,7 @@ RSpec.describe "Portfolios", type: :request do
 
       it "redirects to the created portfolio" do
         post portfolios_url, params: { portfolio: valid_attributes }
-        expect(response).to redirect_to(portfolio_url(Portfolio.last))
+        expect(response).to redirect_to(portfolio_show_url(Portfolio.last))
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe "Portfolios", type: :request do
         portfolio = Portfolio.create! valid_attributes
         patch portfolio_url(portfolio), params: { portfolio: new_attributes }
         portfolio.reload
-        expect(response).to redirect_to(portfolio_url(portfolio))
+        expect(response).to redirect_to(portfolio_show_url(portfolio))
       end
     end
 
