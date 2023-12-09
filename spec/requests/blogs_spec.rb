@@ -43,6 +43,11 @@ RSpec.describe "/blogs", type: :request do
         }.to change(Blog, :count).by(1)
       end
 
+      it "creates a blog with default status" do
+        post blogs_url, params: { blog: valid_attributes }
+        expect(Blog.last.status).to eq(Blog::DRAFT)
+      end
+
       it "redirects to the created blog" do
         post blogs_url, params: { blog: valid_attributes }
         expect(response).to redirect_to(blog_url(Blog.last))
@@ -104,6 +109,32 @@ RSpec.describe "/blogs", type: :request do
       blog = Blog.create! valid_attributes
       delete blog_url(blog)
       expect(response).to redirect_to(blogs_url)
+    end
+  end
+
+  describe "PATCH /toggle_status" do
+    it "redirects to the blogs list" do
+      blog = Blog.create! valid_attributes
+      patch toggle_status_blog_url(blog)
+      expect(response).to redirect_to(blogs_url)
+    end
+
+    context "when blog was a draft" do
+      it "changes status to published" do
+        blog = Blog.create! valid_attributes
+        expect {
+          patch toggle_status_blog_url(blog)
+        }.to change { blog.reload.status }.from(Blog::DRAFT).to(Blog::PUBLISHED)
+      end
+    end
+
+    context "when blog was published" do
+      it "changes status to draft" do
+        blog = Blog.create! valid_attributes.merge(status: Blog::PUBLISHED)
+        expect {
+          patch toggle_status_blog_url(blog)
+        }.to change { blog.reload.status }.from(Blog::PUBLISHED).to(Blog::DRAFT)
+      end
     end
   end
 end

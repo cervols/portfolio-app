@@ -9,4 +9,9 @@
     <%= blog.body %>
   </p>
 
+  <p>
+    <strong>Status:</strong>
+    <%= button_to blog.status, toggle_status_blog_path(blog), method: :patch %>
+  </p>
+
 </div>
