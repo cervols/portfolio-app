@@ -1,10 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "Portfolios", type: :request do
-  let(:valid_attributes) {{ title: "Post title", body: "post text" }}
+  let(:valid_attributes) do
+    {
+      title: "Post title",
+      body: "post text",
+      main_image: "test_image.jpg",
+      thumb_image: "test_image.jpg"
+    }
+  end
   let(:invalid_attributes) {{ title: nil }}
 
   describe "GET /index" do
+    before do
+      allow_any_instance_of(ActionView::Base).to receive(:image_tag)
+    end
+
     it "renders a successful response" do
       Portfolio.create! valid_attributes
       get portfolios_url
@@ -13,6 +24,10 @@ RSpec.describe "Portfolios", type: :request do
   end
 
   describe "GET /show" do
+    before do
+      allow_any_instance_of(ActionView::Base).to receive(:image_tag)
+    end
+
     it "renders a successful response" do
       portfolio = Portfolio.create! valid_attributes
       get portfolio_show_url(portfolio)

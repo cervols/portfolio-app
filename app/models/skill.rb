@@ -1,3 +1,3 @@
 class Skill < ApplicationRecord
-  validates :title, presence: true
+  validates_presence_of :title, :percent_utilized
 end

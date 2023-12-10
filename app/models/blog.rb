@@ -12,5 +12,5 @@ class Blog < ApplicationRecord
     PUBLISHED => 1
   }
 
-  validates :title, presence: true
+  validates_presence_of :title, :body
 end

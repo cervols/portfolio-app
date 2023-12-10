@@ -7,8 +7,13 @@ RSpec.describe Skill, type: :model do
     expect(subject).to be_valid
   end
 
-  it "is not valid without a title" do
+  it "is not valid without title" do
     subject.title = nil
+    expect(subject).to_not be_valid
+  end
+
+  it "is not valid without percent_utilized" do
+    subject.percent_utilized = nil
     expect(subject).to_not be_valid
   end
 end
