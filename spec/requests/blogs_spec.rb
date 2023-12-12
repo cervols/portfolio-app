@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "/blogs", type: :request do
-  let(:valid_attributes) {{ title: "Post title", body: "post text" }}
+  let(:topic) { create(:topic) }
+  let(:valid_attributes) { attributes_for(:blog, topic_id: topic.id) }
   let(:invalid_attributes) {{ title: nil }}
 
   describe "GET /index" do
