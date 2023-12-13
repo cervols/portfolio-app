@@ -2,9 +2,7 @@
 
 FactoryBot.define do
   factory :portfolio do
-    title { 'Portfolio title' }
-    body { 'Portfolio body' }
-    main_image { 'test_image.jpg' }
-    thumb_image { 'test_image.jpg' }
+    title { "Portfolio title" }
+    body { "Portfolio body" }
   end
 end

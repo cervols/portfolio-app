@@ -5,10 +5,6 @@ RSpec.describe "Portfolios", type: :request do
   let(:invalid_attributes) {{ title: nil }}
 
   describe "GET /index" do
-    before do
-      allow_any_instance_of(ActionView::Base).to receive(:image_tag)
-    end
-
     it "renders a successful response" do
       Portfolio.create! valid_attributes
       get portfolios_url
@@ -17,10 +13,6 @@ RSpec.describe "Portfolios", type: :request do
   end
 
   describe "GET /show" do
-    before do
-      allow_any_instance_of(ActionView::Base).to receive(:image_tag)
-    end
-
     it "renders a successful response" do
       portfolio = Portfolio.create! valid_attributes
       get portfolio_show_url(portfolio)
@@ -49,6 +41,23 @@ RSpec.describe "Portfolios", type: :request do
         expect {
           post portfolios_url, params: { portfolio: valid_attributes }
         }.to change(Portfolio, :count).by(1)
+      end
+
+      it "creates related technologies" do
+        technologies_attrs = {
+          technologies_attributes: [
+            {
+              name: "Rails"
+            },
+            {
+              name: "Angular"
+            }
+          ]
+        }
+
+        expect {
+          post portfolios_url, params: { portfolio: valid_attributes.merge(technologies_attrs) }
+        }.to change(Technology, :count).by(2)
       end
 
       it "redirects to the created portfolio" do
