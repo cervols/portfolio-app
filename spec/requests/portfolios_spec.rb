@@ -1,14 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Portfolios", type: :request do
-  let(:valid_attributes) do
-    {
-      title: "Post title",
-      body: "post text",
-      main_image: "test_image.jpg",
-      thumb_image: "test_image.jpg"
-    }
-  end
+  let(:valid_attributes) { attributes_for(:portfolio) }
   let(:invalid_attributes) {{ title: nil }}
 
   describe "GET /index" do

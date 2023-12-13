@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Portfolio, type: :model do
-  subject { described_class.new(title: "Post title", body: "Lorem ipsum", main_image: 'something', thumb_image: 'something')}
+  subject { build(:portfolio) }
 
-  it "is valid with valid attributes" do
+  it "has valid factory" do
     expect(subject).to be_valid
   end
 
