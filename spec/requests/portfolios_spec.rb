@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Portfolios", type: :request do
   let(:valid_attributes) { attributes_for(:portfolio) }
