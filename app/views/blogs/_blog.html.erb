@@ -5,6 +5,11 @@
   </p>
 
   <p>
+    <strong>Published:</strong>
+    <%= distance_of_time_in_words_to_now(blog.created_at) %> ago
+  </p>
+
+  <p>
     <strong>Body:</strong>
     <%= blog.body %>
   </p>
