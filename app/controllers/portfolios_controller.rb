@@ -59,7 +59,7 @@ class PortfoliosController < ApplicationController
         :title,
         :subtitle,
         :body,
-        technologies_attributes: [:name]
+        technologies_attributes: [:id, :name]
       )
     end
 end

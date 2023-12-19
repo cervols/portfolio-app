@@ -1,12 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Portfolios", type: :request do
-  let(:valid_attributes) { attributes_for(:portfolio) }
   let(:invalid_attributes) {{ title: nil }}
 
   describe "GET /index" do
     it "renders a successful response" do
-      Portfolio.create! valid_attributes
+      create(:portfolio)
       get portfolios_url
       expect(response).to be_successful
     end
@@ -14,7 +13,7 @@ RSpec.describe "Portfolios", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      portfolio = Portfolio.create! valid_attributes
+      portfolio = create(:portfolio)
       get portfolio_show_url(portfolio)
       expect(response).to be_successful
     end
@@ -29,7 +28,7 @@ RSpec.describe "Portfolios", type: :request do
 
   describe "GET /edit" do
     it "renders a successful response" do
-      portfolio = Portfolio.create! valid_attributes
+      portfolio = create(:portfolio)
       get edit_portfolio_url(portfolio)
       expect(response).to be_successful
     end
@@ -37,6 +36,8 @@ RSpec.describe "Portfolios", type: :request do
 
   describe "POST /create" do
     context "with valid parameters" do
+      let(:valid_attributes) { attributes_for(:portfolio) }
+
       it "creates a new Portfolio" do
         expect {
           post portfolios_url, params: { portfolio: valid_attributes }
@@ -85,14 +86,31 @@ RSpec.describe "Portfolios", type: :request do
       let(:new_attributes) {{ title: 'new title' }}
 
       it "updates the requested portfolio" do
-        portfolio = Portfolio.create! valid_attributes
+        portfolio = create(:portfolio)
         patch portfolio_url(portfolio), params: { portfolio: new_attributes }
         portfolio.reload
         expect(portfolio.title).to eq(new_attributes[:title])
       end
 
+      it "updates the related technologies" do
+        portfolio = create(:portfolio, :with_technology)
+        new_technology_name = "Rails"
+        technologies_attrs = {
+          technologies_attributes: [
+            {
+              id: portfolio.technologies.first.id,
+              name: new_technology_name
+            }
+          ]
+        }
+
+        expect {
+          patch portfolio_url(portfolio), params: { portfolio: technologies_attrs }
+        }.to change { portfolio.technologies.first.name }.to(new_technology_name)
+      end
+
       it "redirects to the portfolio" do
-        portfolio = Portfolio.create! valid_attributes
+        portfolio = create(:portfolio)
         patch portfolio_url(portfolio), params: { portfolio: new_attributes }
         portfolio.reload
         expect(response).to redirect_to(portfolio_show_url(portfolio))
@@ -101,7 +119,7 @@ RSpec.describe "Portfolios", type: :request do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        portfolio = Portfolio.create! valid_attributes
+        portfolio = create(:portfolio)
         patch portfolio_url(portfolio), params: { portfolio: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -111,14 +129,14 @@ RSpec.describe "Portfolios", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested portfolio" do
-      portfolio = Portfolio.create! valid_attributes
+      portfolio = create(:portfolio)
       expect {
         delete portfolio_url(portfolio)
       }.to change(Portfolio, :count).by(-1)
     end
 
     it "redirects to the portfolios list" do
-      portfolio = Portfolio.create! valid_attributes
+      portfolio = create(:portfolio)
       delete portfolio_url(portfolio)
       expect(response).to redirect_to(portfolios_url)
     end
