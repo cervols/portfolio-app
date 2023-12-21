@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:cervols/tz_view_tool.git
+  revision: f291c29812bda333ee0b3f56d5a071941538820c
+  specs:
+    tz_view_tool (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -299,6 +305,7 @@ DEPENDENCIES
   sprockets-rails
   stimulus-rails
   turbo-rails
+  tz_view_tool!
   tzinfo-data
   web-console
 

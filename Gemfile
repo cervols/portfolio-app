@@ -74,3 +74,5 @@ end
 gem "bootstrap", "~> 5.3.2"
 gem "devise", "~> 4.9", ">= 4.9.3"
 gem "friendly_id", "~> 5.4.0"
+# A tiny gem to generate copyright for application view layouts
+gem "tz_view_tool", git: "git@github.com:cervols/tz_view_tool.git"

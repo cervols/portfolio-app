@@ -15,6 +15,10 @@ module ApplicationHelper
     content_tag(:p, greeting, class: "source-greeting")
   end
 
+  def copyright
+    TzViewTool::Renderer.copyright("Tania Zavediuk", "All rights reserved")
+  end
+
   private
 
     def greeting
