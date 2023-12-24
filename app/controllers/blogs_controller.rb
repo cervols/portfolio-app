@@ -1,5 +1,8 @@
 class BlogsController < ApplicationController
-  before_action :set_blog, only: %i[ show edit update destroy toggle_status ]
+  before_action :set_blog, only: %i[show edit update destroy toggle_status]
+  access all: %i[show index],
+         user: { except: %i[new edit create update destroy] },
+         site_admin: :all
   layout "blog"
 
   def index
@@ -15,8 +18,7 @@ class BlogsController < ApplicationController
     @blog = Blog.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @blog = Blog.new(blog_params)

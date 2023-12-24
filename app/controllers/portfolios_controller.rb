@@ -1,13 +1,15 @@
 class PortfoliosController < ApplicationController
-  before_action :set_portfolio_item, only: %i[ show edit update destroy ]
+  before_action :set_portfolio_item, only: %i[show edit update destroy]
+  access all: %i[show index],
+         user: { except: %i[new edit create update destroy] },
+         site_admin: :all
   layout "portfolio"
 
   def index
     @portfolio_items = Portfolio.all
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @portfolio_item = Portfolio.new
@@ -15,8 +17,7 @@ class PortfoliosController < ApplicationController
     3.times { @portfolio_item.technologies.build }
   end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @portfolio_item = Portfolio.new(portfolio_params)
@@ -59,7 +60,7 @@ class PortfoliosController < ApplicationController
         :title,
         :subtitle,
         :body,
-        technologies_attributes: [:id, :name]
+        technologies_attributes: %i[id name]
       )
     end
 end

@@ -13,8 +13,8 @@ RSpec.describe ApplicationController do
     end
 
     context "when user is not signed in" do
-      it "sets current_user as an instance of OpenStruct" do
-        expect(controller.current_user).to be_a(OpenStruct)
+      it "sets current_user as an instance of GuestUser" do
+        expect(controller.current_user).to be_a(GuestUser)
       end
     end
   end

@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "Portfolios", type: :request do
   let(:invalid_attributes) {{ title: nil }}
+  let(:user) { create(:user, :site_admin) }
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -20,6 +21,8 @@ RSpec.describe "Portfolios", type: :request do
   end
 
   describe "GET /new" do
+    before { sign_in(user) }
+
     it "renders a successful response" do
       get new_portfolio_url
       expect(response).to be_successful
@@ -27,6 +30,8 @@ RSpec.describe "Portfolios", type: :request do
   end
 
   describe "GET /edit" do
+    before { sign_in(user) }
+
     it "renders a successful response" do
       portfolio = create(:portfolio)
       get edit_portfolio_url(portfolio)
@@ -35,6 +40,8 @@ RSpec.describe "Portfolios", type: :request do
   end
 
   describe "POST /create" do
+    before { sign_in(user) }
+
     context "with valid parameters" do
       let(:valid_attributes) { attributes_for(:portfolio) }
 
@@ -82,6 +89,8 @@ RSpec.describe "Portfolios", type: :request do
   end
 
   describe "PATCH /update" do
+    before { sign_in(user) }
+
     context "with valid parameters" do
       let(:new_attributes) {{ title: 'new title' }}
 
@@ -128,6 +137,8 @@ RSpec.describe "Portfolios", type: :request do
   end
 
   describe "DELETE /destroy" do
+    before { sign_in(user) }
+
     it "destroys the requested portfolio" do
       portfolio = create(:portfolio)
       expect {
@@ -142,4 +153,3 @@ RSpec.describe "Portfolios", type: :request do
     end
   end
 end
-

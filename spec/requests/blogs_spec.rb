@@ -4,6 +4,7 @@ RSpec.describe "/blogs", type: :request do
   let(:topic) { create(:topic) }
   let(:valid_attributes) { attributes_for(:blog, topic_id: topic.id) }
   let(:invalid_attributes) {{ title: nil }}
+  let(:user) { create(:user, :site_admin) }
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -22,6 +23,8 @@ RSpec.describe "/blogs", type: :request do
   end
 
   describe "GET /new" do
+    before { sign_in(user) }
+
     it "renders a successful response" do
       get new_blog_url
       expect(response).to be_successful
@@ -29,6 +32,8 @@ RSpec.describe "/blogs", type: :request do
   end
 
   describe "GET /edit" do
+    before { sign_in(user) }
+
     it "renders a successful response" do
       blog = Blog.create! valid_attributes
       get edit_blog_url(blog)
@@ -37,6 +42,8 @@ RSpec.describe "/blogs", type: :request do
   end
 
   describe "POST /create" do
+    before { sign_in(user) }
+
     context "with valid parameters" do
       it "creates a new Blog" do
         expect {
@@ -70,6 +77,8 @@ RSpec.describe "/blogs", type: :request do
   end
 
   describe "PATCH /update" do
+    before { sign_in(user) }
+
     context "with valid parameters" do
       let(:new_attributes) {{ title: 'new title' }}
 
@@ -99,6 +108,8 @@ RSpec.describe "/blogs", type: :request do
   end
 
   describe "DELETE /destroy" do
+    before { sign_in(user) }
+
     it "destroys the requested blog" do
       blog = Blog.create! valid_attributes
       expect {
