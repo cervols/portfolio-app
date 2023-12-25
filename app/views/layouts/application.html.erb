@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
+    <meta charset="utf-8">
+    
     <title><%= @page_title %>></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -12,7 +14,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex h-100 text-center text-bg-dark">
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
@@ -23,7 +25,7 @@
     <%= yield %>
 
     <p><%= copyright %></p>
-    
+
     <%= source_greeting %>
   </body>
 </html>
