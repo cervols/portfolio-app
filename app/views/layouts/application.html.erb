@@ -2,7 +2,7 @@
 <html class="h-100">
   <head>
     <meta charset="utf-8">
-    
+
     <title><%= @page_title %>></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -15,17 +15,17 @@
   </head>
 
   <body class="d-flex h-100 text-center text-bg-dark">
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
-    <%= render "shared/nav", location: "top" %>
+      <%= render "shared/application_nav" %>
 
-    <%= auth_links %>
+      <main class="px-3">
+        <%= yield %>
+      </main>
 
-    <%= yield %>
+      <%= render "shared/application_footer" %>
 
-    <p><%= copyright %></p>
-
-    <%= source_greeting %>
+      <%= source_greeting %>
+    </div>
   </body>
 </html>
