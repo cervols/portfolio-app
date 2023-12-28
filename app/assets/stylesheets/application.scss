@@ -50,3 +50,15 @@ body {
   color: #fff;
   border-bottom-color: #fff;
 }
+
+/*
+ * Custom styles
+ */
+
+.card-body {
+  text-align: left;
+}
+
+.card-body h3 {
+  font-size: 1.6rem;
+}
