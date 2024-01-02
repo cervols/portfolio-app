@@ -125,6 +125,8 @@ RSpec.describe "/blogs", type: :request do
   end
 
   describe "PATCH /toggle_status" do
+    before { sign_in(user) }
+
     it "redirects to the blogs list" do
       blog = Blog.create! valid_attributes
       patch toggle_status_blog_url(blog)
