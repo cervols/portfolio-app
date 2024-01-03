@@ -1,0 +1,9 @@
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
+  <div class="col-lg-6 px-0">
+    <h1 class="display-4 fst-italic">My Blog</h1>
+    <p class="lead my-3">Multiple lines of text informing new readers about what’s most interesting in this blog.</p>
+    <p class="lead mb-0">
+      <%= link_to "Write a New Blog", new_blog_path, class: "text-body-emphasis fw-bold" if logged_in?(:site_admin) %>    
+    </p>
+  </div>
+</div>

@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<div class="col-md-8">
+  <article class="blog-post">
+    <h2 class="display-5 link-body-emphasis mb-1"><%= @blog.title %></h2>
+    <p class="blog-post-meta">
+      <%= link_to "Edit", edit_blog_path(@blog) if logged_in?(:site_admin) %>
+    </p>
 
-<%= render @blog %>
-
-<div>
-  <%= link_to "Edit", edit_blog_path(@blog) if logged_in?(:site_admin) %> |
-  <%= link_to "Back to posts", blogs_path %>
-
-  <%= button_to "Delete this post", @blog, method: :delete if logged_in?(:site_admin)%>
+    <p>
+      <%= @blog.body %>
+    </p>
+  </article>
 </div>
