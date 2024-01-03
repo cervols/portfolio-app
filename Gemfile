@@ -73,6 +73,7 @@ end
 
 gem "bootstrap", "~> 5.3.2"
 gem "devise", "~> 4.9", ">= 4.9.3"
+gem "font-awesome-sass", "~> 6.5.1"
 gem "friendly_id", "~> 5.4.0"
 gem 'petergate', '~> 3.0'
 gem "tz_view_tool", git: "git@github.com:cervols/tz_view_tool.git"

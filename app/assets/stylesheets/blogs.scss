@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 
 /* stylelint-disable stylistic/selector-list-comma-newline-after */
 
@@ -45,4 +46,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 .blog-post h2 a:hover {
   text-decoration: none;
+}
+.social-links li {
+  font-size: 2.5em;
 }
