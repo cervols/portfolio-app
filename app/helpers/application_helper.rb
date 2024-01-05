@@ -2,9 +2,10 @@ module ApplicationHelper
   def auth_links(style = "")
     if current_user.is_a?(GuestUser)
       (link_to "Sign up", new_user_registration_path, class: style) +
+      " ".html_safe +
       (link_to "Login", new_user_session_path, class: style)
     else
-      button_to "Logout", destroy_user_session_path, class: style, method: :delete
+      link_to "Logout", destroy_user_session_path, class: style, data: { "turbo-method": :delete }
     end
   end
 
