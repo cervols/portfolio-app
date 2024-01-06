@@ -1,14 +1,7 @@
-<p style="color: green"><%= notice %></p>
+<div class="col-md-8">
+  
+  <%= render @blogs %>
 
-<h1>Blogs</h1>
-
-<div id="blogs">
-  <% @blogs.each do |blog| %>
-    <%= render blog %>
-    <p>
-      <%= link_to "Show this blog", blog %>
-    </p>
-  <% end %>
+  <%= paginate @blogs %>
+  
 </div>
-
-<%= link_to "New blog", new_blog_path if logged_in?(:site_admin) %>
