@@ -26,4 +26,13 @@ RSpec.describe Portfolio, type: :model do
     subject.thumb_image = nil
     expect(subject).to_not be_valid
   end
+
+  describe ".by_position" do
+    let!(:portfolio_1) { create(:portfolio, position: 2) }
+    let!(:portfolio_2) { create(:portfolio, position: 1) }
+
+    it "returns portfolio items ordered by position ASC" do
+      expect(described_class.by_position).to eq([portfolio_2, portfolio_1])
+    end
+  end
 end
