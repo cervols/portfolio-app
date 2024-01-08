@@ -71,6 +71,7 @@ end
 group :test do
 end
 
+gem "acts_as_list", "~> 1.1"
 gem "bootstrap", "~> 5.3.2"
 gem "devise", "~> 4.9", ">= 4.9.3"
 gem "font-awesome-sass", "~> 6.5.1"
