@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
-import Sortable from 'sortablejs'
-import Rails from '@rails/ujs'
+import Sortable from "sortablejs"
+import { patch } from "@rails/request.js"
 
 // Connects to data-controller="sortable"
 export default class extends Controller {
@@ -11,14 +11,10 @@ export default class extends Controller {
   }
 
   onEnd(event) {
-    let id = event.item.dataset.sortableId
-    let data = new FormData()
-    data.append("position", event.newIndex + 1)
+    let sortableUpdateUrl = event.item.dataset.sortableUpdateUrl
 
-    Rails.ajax({
-      url: this.data.get("url").replace(":id", id),
-      type: 'PATCH',
-      data: data
+    patch(sortableUpdateUrl, {
+      body: JSON.stringify({position: event.newIndex + 1})
     })
   }
 }

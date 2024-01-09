@@ -1,7 +1,7 @@
 require "rails_helper"
 
 Rails.describe PortfoliosController, type: :controller do
-  describe "PATCH #move" do
+  describe "PATCH /move" do
     subject { patch :move, params: { id: portfolio_2.id, position: 1 } }
 
     let!(:portfolio_1) { create(:portfolio) }
