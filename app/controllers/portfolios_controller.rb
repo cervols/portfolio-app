@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_action :set_portfolio_item, only: %i[show edit update destroy]
+  before_action :set_portfolio_item, only: %i[show edit update destroy move]
   access all: %i[show index],
          user: { except: %i[new edit create update destroy] },
          site_admin: :all
@@ -47,6 +47,11 @@ class PortfoliosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to portfolios_url, notice: "Portfolio was successfully removed." }
     end
+  end
+
+  def move
+    @portfolio_item.insert_at(params[:position].to_i)
+    head :no_content
   end
 
   private
