@@ -71,10 +71,12 @@ end
 group :test do
 end
 
+gem "acts_as_list", "~> 1.1"
 gem "bootstrap", "~> 5.3.2"
 gem "devise", "~> 4.9", ">= 4.9.3"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "friendly_id", "~> 5.4.0"
 gem "kaminari", "~> 1.2", ">= 1.2.2"
 gem "petergate", "~> 3.0"
+gem "requestjs-rails", "~> 0.0.11"
 gem "tz_view_tool", git: "git@github.com:cervols/tz_view_tool.git"

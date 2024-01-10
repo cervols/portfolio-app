@@ -34,5 +34,9 @@ RSpec.describe PortfoliosController, type: :routing do
     it "routes to #destroy" do
       expect(delete: "/portfolios/1").to route_to("portfolios#destroy", id: "1")
     end
+
+    it "routes to #move" do
+      expect(patch: "/portfolios/1/move").to route_to("portfolios#move", id: "1")
+    end
   end
 end
