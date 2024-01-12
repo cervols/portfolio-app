@@ -17,6 +17,15 @@
   <body class="d-flex h-100 text-center text-bg-dark">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
+      <%= video_tag(
+        "technologies.mp4",
+        class: "body-background",
+        autoplay: true,
+        loop: true,
+        muted: true,
+        poster: "main_background.jpg",
+      ) %>
+
       <%= render "shared/application_nav" %>
 
       <main class="px-3">
