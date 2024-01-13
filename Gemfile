@@ -73,6 +73,7 @@ end
 
 gem "acts_as_list", "~> 1.1"
 gem "bootstrap", "~> 5.3.2"
+gem "carrierwave", "~> 3.0"
 gem "devise", "~> 4.9", ">= 4.9.3"
 gem "font-awesome-sass", "~> 6.5.1"
 gem "friendly_id", "~> 5.4.0"
