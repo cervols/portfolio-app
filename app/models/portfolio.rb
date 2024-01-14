@@ -10,6 +10,9 @@ class Portfolio < ApplicationRecord
 
   scope :by_position, -> { order("position ASC") }
 
+  mount_uploader :main_image, PortfolioUploader
+  mount_uploader :thumb_image, PortfolioUploader
+
   # TODO: remove after starting to utilize carrierwave gem
   after_initialize :set_defaults
 

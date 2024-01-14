@@ -1,6 +1,6 @@
 <div class="col" data-sortable-update-url="<%= move_portfolio_path(portfolio_item) if logged_in?(:site_admin) %>">
   <div class="card shadow-sm">
-    <%= image_tag portfolio_item.thumb_image unless portfolio_item.thumb_image.nil? %>
+    <%= image_tag portfolio_item.thumb_image_url unless portfolio_item.thumb_image.nil? %>
     <div class="card-body">
       <p class="card-text">
       	<span><%= portfolio_item.title %></span> <%= portfolio_item.subtitle %>
