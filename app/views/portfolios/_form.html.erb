@@ -22,13 +22,14 @@
         <%= form.label :subtitle, class: "form-label" %>
         <%= form.text_field :subtitle, class: "form-control" %>
       </div>
-
-      <div class="mb-3">
-        <%= form.file_field :main_image %>
+      <div class="input-group mb-3">
+        <%= form.file_field :main_image, class: "form-control" %>
+        <%= form.label :main_image, class: "input-group-text" %>
       </div>
 
-      <div class="mb-3">
-        <%= form.file_field :thumb_image %>
+      <div class="input-group mb-3">
+        <%= form.file_field :thumb_image, class: "form-control" %>
+        <%= form.label :thumb_image, class: "input-group-text" %>
       </div>
     </div>
 

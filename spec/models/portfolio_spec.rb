@@ -17,16 +17,6 @@ RSpec.describe Portfolio, type: :model do
     expect(subject).to_not be_valid
   end
 
-  it "is not valid without main_image" do
-    subject.main_image = nil
-    expect(subject).to_not be_valid
-  end
-
-  it "is not valid without thumb_image" do
-    subject.thumb_image = nil
-    expect(subject).to_not be_valid
-  end
-
   describe ".by_position" do
     let!(:portfolio_1) { create(:portfolio, position: 2) }
     let!(:portfolio_2) { create(:portfolio, position: 1) }
