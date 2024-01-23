@@ -44,13 +44,16 @@
   <div class="col-md-12">
     <h3>Technologies used:</h3>
 
-    <div>
-      <%= form.fields_for :technologies do |technology_form| %>
-        <div class="mb-3">
-          <%= technology_form.label :name, class: "form-label" %>
-          <%= technology_form.text_field :name, class: "form-control" %>
-        </div>
-      <% end %>
+    <div class="technologies-container">
+      <div id="technologies">
+        <%= form.fields_for :technologies do |technology_form| %>
+          <%= render 'technology_fields', form: technology_form %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= link_to_add_nested(form, :technologies, "#technologies") %>
+      </div>
     </div>
 
     <div class="d-grid mb-3">

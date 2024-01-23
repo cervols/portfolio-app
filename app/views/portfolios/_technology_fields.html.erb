@@ -1,0 +1,8 @@
+<div class="row g-3 technology-container">
+  <div class="col-auto">
+    <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+  </div>
+  <div class="col-auto">
+    <%= link_to_remove_nested(form, link_classes: "btn btn-danger mb-3", fields_wrapper_selector: ".technology-container") %>
+  </div>
+</div>

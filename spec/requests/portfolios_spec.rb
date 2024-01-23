@@ -46,9 +46,9 @@ RSpec.describe "Portfolios", type: :request do
       let(:valid_attributes) { attributes_for(:portfolio) }
 
       it "creates a new Portfolio" do
-        expect {
+        expect do
           post portfolios_url, params: { portfolio: valid_attributes }
-        }.to change(Portfolio, :count).by(1)
+        end.to change(Portfolio, :count).by(1)
       end
 
       it "creates related technologies" do
@@ -63,9 +63,9 @@ RSpec.describe "Portfolios", type: :request do
           ]
         }
 
-        expect {
+        expect do
           post portfolios_url, params: { portfolio: valid_attributes.merge(technologies_attrs) }
-        }.to change(Technology, :count).by(2)
+        end.to change(Technology, :count).by(2)
       end
 
       it "redirects to the created portfolio" do
@@ -76,9 +76,9 @@ RSpec.describe "Portfolios", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new Portfolio" do
-        expect {
+        expect do
           post portfolios_url, params: { portfolio: invalid_attributes }
-        }.to change(Portfolio, :count).by(0)
+        end.to change(Portfolio, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
@@ -113,9 +113,26 @@ RSpec.describe "Portfolios", type: :request do
           ]
         }
 
-        expect {
+        expect do
           patch portfolio_url(portfolio), params: { portfolio: technologies_attrs }
-        }.to change { portfolio.technologies.first.name }.to(new_technology_name)
+        end.to change { portfolio.technologies.first.name }.to(new_technology_name)
+      end
+
+      it "deletes related technology when using with '_destroy' param" do
+        portfolio = create(:portfolio, :with_technology)
+        technology = portfolio.technologies.first
+        technologies_attrs = {
+          technologies_attributes: [
+            {
+              id: technology.id,
+              _destroy: 1
+            }
+          ]
+        }
+
+        expect do
+          patch portfolio_url(portfolio), params: { portfolio: technologies_attrs }
+        end.to change { portfolio.technologies.count }.from(1).to(0)
       end
 
       it "redirects to the portfolio" do
@@ -140,9 +157,9 @@ RSpec.describe "Portfolios", type: :request do
 
     it "destroys the requested portfolio" do
       portfolio = create(:portfolio)
-      expect {
+      expect do
         delete portfolio_url(portfolio)
-      }.to change(Portfolio, :count).by(-1)
+      end.to change(Portfolio, :count).by(-1)
     end
 
     it "redirects to the portfolios list" do

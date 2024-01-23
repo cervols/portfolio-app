@@ -13,8 +13,6 @@ class PortfoliosController < ApplicationController
 
   def new
     @portfolio_item = Portfolio.new
-    # TODO: remove after implementing dynamically adding technologies via js
-    3.times { @portfolio_item.technologies.build }
   end
 
   def edit; end
@@ -67,7 +65,7 @@ class PortfoliosController < ApplicationController
         :body,
         :main_image,
         :thumb_image,
-        technologies_attributes: %i[id name]
+        technologies_attributes: %i[id name _destroy]
       )
     end
 end
