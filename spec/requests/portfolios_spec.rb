@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Portfolios", type: :request do
-  let(:invalid_attributes) {{ title: nil }}
+  let(:invalid_attributes) { { title: nil } }
   let(:user) { create(:user, :site_admin) }
 
   describe "GET /index" do
@@ -92,7 +92,7 @@ RSpec.describe "Portfolios", type: :request do
     before { sign_in(user) }
 
     context "with valid parameters" do
-      let(:new_attributes) {{ title: 'new title' }}
+      let(:new_attributes) { { title: 'new title' } }
 
       it "updates the requested portfolio" do
         portfolio = create(:portfolio)
@@ -166,6 +166,13 @@ RSpec.describe "Portfolios", type: :request do
       portfolio = create(:portfolio)
       delete portfolio_url(portfolio)
       expect(response).to redirect_to(portfolios_url)
+    end
+
+    it "destroys related technologies" do
+      portfolio = create(:portfolio, :with_technology)
+      expect do
+        delete portfolio_url(portfolio)
+      end.to change { portfolio.technologies.count }.from(1).to(0)
     end
   end
 end
