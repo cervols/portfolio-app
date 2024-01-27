@@ -54,6 +54,30 @@ module ApplicationHelper
     ]
   end
 
+  def toast_messages
+    return if flash.empty?
+
+    result = ""
+
+    flash.each do |type, message|
+      result +=
+        if type == "notice"
+          generate_toast(message, "text-bg-success")
+        else
+          generate_toast(message)
+        end
+    end
+
+    result.html_safe
+  end
+
+  def generate_toast(msg, style = "text-bg-danger")
+    render(
+      partial: "shared/toast",
+      locals: { msg: msg, style: style }
+    )
+  end
+
   private
 
     def greeting
