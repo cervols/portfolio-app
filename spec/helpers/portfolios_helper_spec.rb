@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe PortfoliosHelper, type: :helper do
-  describe ".portfolio_img" do
+  describe "#portfolio_img" do
     let(:portfolio) { create(:portfolio) }
     let(:image) { Rack::Test::UploadedFile.new(Rails.root.join("spec", "support", "files", "attachment.png")) }
     let(:main_placeholder) { "http://placehold.it/600x400" }

@@ -2,7 +2,7 @@
   <% if portfolio_item.errors.any? %>
     <% portfolio_item.errors.each do |error| %>
       <%= turbo_stream.append "toast" do %>
-        <% generate_toast(error.full_message) %>
+        <% generate_alert(error.full_message) %>
       <% end %>
     <% end %>
   <% end %>

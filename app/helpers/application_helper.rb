@@ -54,24 +54,26 @@ module ApplicationHelper
     ]
   end
 
-  def toast_messages
+  def alerts
     return if flash.empty?
 
-    result = ""
+    alerts = ""
 
     flash.each do |type, message|
-      result +=
+      next if message.empty?
+
+      alerts +=
         if type == "notice"
-          generate_toast(message, "text-bg-success")
+          generate_alert(message, "text-bg-success")
         else
-          generate_toast(message)
+          generate_alert(message)
         end
     end
 
-    result.html_safe
+    alerts.html_safe
   end
 
-  def generate_toast(msg, style = "text-bg-danger")
+  def generate_alert(msg, style = "text-bg-danger")
     render(
       partial: "shared/toast",
       locals: { msg: msg, style: style }
